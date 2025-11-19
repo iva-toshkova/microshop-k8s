@@ -1,0 +1,21 @@
+# This file has 3 INTENTIONAL ERRORS - Find them!
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: microshop
+  namespace: default  # ERROR 1: Should be in argocd namespace
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/<your-username>/microshop-k8s
+    targetRevision: main
+    path: k8s/base
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true  # ERROR 2: Should be true
