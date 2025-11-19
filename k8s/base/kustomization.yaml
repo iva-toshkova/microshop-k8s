@@ -8,10 +8,9 @@ resources:
   - namespace.yaml
   - mongodb/statefulset.yaml
   - mongodb/headless-service.yaml
-  - mongodb/secret.yaml
+  - mongodb/mongodb-secret.yaml
   - redis/statefulset.yaml
   - redis/headless-service.yaml
-  - redis/service.yaml
   - redis/secret.yaml
   - product-service/deployment.yaml
   - product-service/service.yaml
