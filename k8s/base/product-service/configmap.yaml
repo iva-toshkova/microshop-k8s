@@ -1,0 +1,11 @@
+# k8s/base/product-service/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: product-service-config
+  namespace: microshop
+data:
+  database_name: "products"
+  redis_host: "redis-headless"
+  log_level: "info"
+  cache_ttl: "3600"

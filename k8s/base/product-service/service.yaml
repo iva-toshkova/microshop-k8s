@@ -1,0 +1,15 @@
+# k8s/base/product-service/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: product-service
+  namespace: microshop
+spec:
+  type: ClusterIP
+  selector:
+    app: product-service
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+      name: http

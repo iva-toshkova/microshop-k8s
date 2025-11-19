@@ -1,0 +1,20 @@
+# k8s/base/redis/headless-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-headless-service # Descriptive name for the headless service
+spec:
+  # This makes the service "Headless."
+  # DNS queries will return the IP addresses of the individual Pods.
+  clusterIP: None
+
+  # The selector must match the labels on the Redis StatefulSet's Pods
+  selector:
+    app: redis-stateful
+
+  # The ports section defines how the service exposes the pods
+  ports:
+    # Redis's default port
+    - port: 6379
+      targetPort: 6379
+      name: redis

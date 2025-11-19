@@ -1,0 +1,61 @@
+# k8s/base/product-service/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-service
+  namespace: microshop
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: product-service
+  template:
+    metadata:
+      labels:
+        app: product-service
+    spec:
+      containers:
+        - name: product-service
+          image: your-registry/product-service:latest  # Should use specific version
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MONGODB_USERNAME
+              valueFrom:
+              secretKeyRef:
+                name: mongodb-secret
+                key: username
+            - name: MONGODB_PASSWORD
+              valueFrom:
+              secretKeyRef:
+                name: mongodb-secret
+                key: password
+            - name: MONGODB_URI
+              value: "mongodb://$(MONGODB_USERNAME):$(MONGODB_PASSWORD)@mongodb-headless:27017"
+            - name: MONGODB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: product-service-config
+                  key: database_name
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: product-service-config
+                  key: redis_host
+            - name: LOG_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  name: product-service-config
+                  key: log_level
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
