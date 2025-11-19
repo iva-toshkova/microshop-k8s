@@ -1,4 +1,4 @@
-# k8s/base/microshop.yaml
+# k8s/base/namespace.yaml
 apiVersion: v1
 kind: Namespace
 metadata:
