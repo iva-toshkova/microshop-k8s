@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: product-service
-          image: your-registry/product-service:latest  # Should use specific version
+          image: ivat11/product-service:v1.2.0  # Should use specific version
           ports:
             - containerPort: 8080
           env:
