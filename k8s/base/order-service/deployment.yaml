@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: order-service
-          image: hello-world
+          image: ivat11/product-service:v1.2.1
           ports:
             - containerPort: 8080
           env:
