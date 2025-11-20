@@ -47,15 +47,3 @@ spec:
                 configMapKeyRef:
                   name: product-service-config
                   key: log_level
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 8080
-            initialDelaySeconds: 600000   # Give app more time to start
-            periodSeconds: 100000
-          readinessProbe:
-            httpGet:
-              path: /ready
-              port: 8080
-            initialDelaySeconds: 200000   # Give app time to become ready
-            periodSeconds: 50000
