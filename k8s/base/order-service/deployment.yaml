@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: order-service
-          image: ivat11/product-service:v1.2.1
+          image: ivat11/order-service:v1.2.1
           ports:
             - containerPort: 8080
           env:
