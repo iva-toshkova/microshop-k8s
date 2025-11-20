@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: order-service
-          image: ghcr.io/paulbouwer/hello-kubernetes:1.10
+          image: hello-kubernetes:1.10
           ports:
             - containerPort: 8080
           env:
