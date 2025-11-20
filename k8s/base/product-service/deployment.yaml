@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: product-service
-          image: hello-kubernetes:1.10  # Should use specific version
+          image: hello-world  # Should use specific version
           ports:
             - containerPort: 8080
           env:
